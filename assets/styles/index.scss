@@ -1,34 +1,47 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$black: #000;
+$gray: #999;
+
 .wrapper {
+  border: 1px solid $black;
   font-weight: bold;
-  border: 1px solid black;
-  padding: 15px;
   max-width: 600px;
+  padding: 15px;
 }
+
 .board {
-  background-color: #999;
-  border: 1px solid black;
+  background-color: $gray;
+  border: 1px solid $black;
 }
-.playerOne, .playerTwo {
+
+.first-player,
+.second-player {
   font-size: 22px;
 }
-.row, .col-md-4 {
+
+.row,
+.col-md-4 {
   height: 150px;
 }
-.bRight {
-  border-right: 3px solid black;
+
+.b-right {
+  border-right: 3px solid $black;
 }
-.bLeft {
-  border-left: 3px solid black;
+
+.b-left {
+  border-left: 3px solid $black;
 }
-.bTop {
-  border-top: 3px solid black;
+
+.b-top {
+  border-top: 3px solid $black;
 }
-.bBtm {
-  border-bottom: 3px solid black;
+
+.b-btm {
+  border-bottom: 3px solid $black;
 }
-.bMid {
-  border: 3px solid black;
+
+.b-mid {
+  border: 3px solid $black;
 }
