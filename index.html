@@ -13,6 +13,52 @@
     </head>
     <body>
       <div class="wrapper">
+        <div class="account-options">
+          <h1 id="message">Tic-Tac-Account</h1>
+          <div id="sign-up-shell">
+            <form id="sign-up" class="border">
+              <fieldset>
+                <legend>Sign Up</legend>
+                <input type="email" name="credentials[email]" placeholder="Email:">
+                <input type="password" name="credentials[password]" placeholder="Password:">
+                <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password:">
+                <button type="submit">Sign Up</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="sign-in-shell">
+            <form id="sign-in" class="border">
+              <fieldset>
+                <legend>Sign In</legend>
+                <input type="email" name="credentials[email]" placeholder="Email:">
+                <input type="password" name="credentials[password]" placeholder="Password:">
+                <button type="submit">Sign In</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="change-password-shell">
+            <h4>Change Password</h4>
+            <form id="change-password" class="border">
+              <fieldset>
+                <legend>Change Password</legend>
+                <input type="password" name="passwords[old]" placeholder="Old Password:">
+                <input type="password" name="passwords[new]" placeholder="New Password:">
+                <button type="submit">Change Password</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="sign-out-shell">
+            <h4>Sign Out</h4>
+            <form id="sign-out" class="border">
+              <fieldset>
+                <legend>Sign out</legend>
+                <button type="submit">Sign out</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
         <div class="first-player">
           <!-- Heh, Heh Cardinal sins are meant for breaking -->
           <form id="player-one">
