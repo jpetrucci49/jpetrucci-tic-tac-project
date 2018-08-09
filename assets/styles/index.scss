@@ -1,47 +1,62 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$font-color: #dfdfdf;
+$white: #fff;
+$grey: rgb(128, 128, 128);
+$teal: rgb(0, 156, 161);
 $black: #000;
-$gray: #999;
+$red: rgb(255, 0, 0);
+$green: rgb(0, 255, 0);
+$blue: rgb(0, 0, 255);
 
 .wrapper {
-  border: 1px solid $black;
+  display: flex;
+  flex-direction: column;
   font-weight: bold;
   max-width: 600px;
   padding: 15px;
 }
 
-.board {
-  background-color: $gray;
+.row {
+  display: flex;
+  font-size: 100px;
+}
+
+.box {
+  align-items: center;
   border: 1px solid $black;
+  color: $font-color;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    padding-bottom: 100%;
+  }
 }
 
-.first-player,
-.second-player {
-  font-size: 22px;
+.r {
+  background-color: $red;
+
+  &:hover {
+    background-color: $blue;
+  }
 }
 
-.row,
-.col-md-4 {
-  height: 150px;
+.g {
+  background-color: $green;
+
+  &:hover {
+    background-color: $grey;
+  }
 }
 
-.b-right {
-  border-right: 3px solid $black;
-}
+.b {
+  background-color: $blue;
 
-.b-left {
-  border-left: 3px solid $black;
-}
-
-.b-top {
-  border-top: 3px solid $black;
-}
-
-.b-btm {
-  border-bottom: 3px solid $black;
-}
-
-.b-mid {
-  border: 3px solid $black;
+  &:hover {
+    background-color: $red;
+  }
 }
