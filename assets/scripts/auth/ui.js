@@ -41,6 +41,7 @@ const signInSuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success')
   clearData()
+  signIn()
   setTimeout(removeMessage, 10000)
   store.user = response.user
 }
@@ -72,6 +73,7 @@ const signOutSuccess = function () {
   $('#message').removeClass()
   $('#message').addClass('success')
   clearData()
+  signOut()
   setTimeout(removeMessage, 10000)
 }
 const signOutFailure = function () {
