@@ -1,5 +1,6 @@
 'use strict'
-const ticTac = require('./gameBoard.js')
+const boardEvent = require('./gameBoard.js')
+const authEvents = require('./auth/events.js')
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
 
@@ -7,7 +8,8 @@ const ticTac = require('./gameBoard.js')
 // require('./example')
 
 $(() => {
-  $('#ticTac').on('click', ticTac.ticTacBoard)
+  boardEvent.handler()
+  authEvents.handler()
   // $('#books-list').on('submit', events.onListBook)
   // $('#books-show').on('submit', events.onShowBook)
   // $('#books-destroy').on('submit', events.onDestroyBook)

@@ -19,6 +19,9 @@ const ticTacBoard = function (e) {
   console.log('Cells played -', played)
 }
 
+const handler = function () {
+  $('#ticTac').on('click', ticTacBoard)
+}
 module.exports = {
-  ticTacBoard
+  handler
 }
