@@ -5,33 +5,31 @@ const winConditions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3
 let x = true
 
 const clearBoard = function () {
+  played = []
+  x = true
   $('div.box').text('')
 }
 
-const match = function () {
-  // if (played.length < 3) {
-  //   return false
-  // }
-  const result = winConditions.some(function (condition) { // reduce(function(a, b){ return (a === b) ? a : NaN; })
-    if (condition.every(id => played.includes(id)) condition.every(y => $(`div#${id}`).text())) {
-      console.log('Yeaaaaaaah')
+const checkWin = function () {
+  const result = winConditions.some(function (condition) {
+    //  If line is filled
+    if (condition.every(id => played.includes(id))) {
+      const line = []
+      condition.forEach(id => {
+        line.push($(`div#${id}`).text())
+      })
+      const test = line.every(x => line.every(y => x === y))
+      if (test) {
+        gameWin = !gameWin
+      }
     }
   })
   return result
-  // winConditions.forEach(function (x) {
-  //   return played.forEach(function (y) {
-  //     console.log((x.indexOf(y) > -1))
-  // })
-  // })
 }
 
 // var array1 = [[1, 3, 5], [2, 4, 7], [1, 5, 9]],
 //     array2 = [1, 2, 4, 5, 9],
 //     result = array1.some(a => a.every(v => array2.includes(v)));
-
-const winCheck = function () {
-  console.log(match())
-}
 
 const ticTacBoard = function (e) {
   const tgt = e.target
@@ -48,15 +46,16 @@ const ticTacBoard = function (e) {
       x = !x
     }
     played.push(cell)
-    winCheck()
+    checkWin()
   }
 
   if (played.length === 9 && !gameWin) {
     console.log('Game over, It\'s a draw.')
-    played = []
-    x = true
-
     setTimeout(clearBoard, 1000)
+  } else if (gameWin) {
+    console.log('Yeah! Thats a win!')
+    setTimeout(clearBoard, 1000)
+    gameWin = !gameWin
   }
   console.log('Cells played -', played)
 }
