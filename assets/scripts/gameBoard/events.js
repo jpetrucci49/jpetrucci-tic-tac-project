@@ -1,3 +1,6 @@
+'use strict'
+const api = require('./api.js')
+const ui = require('./ui.js')
 
 let gameWin = false
 let played = []
@@ -8,6 +11,8 @@ const clearBoard = function () {
   played = []
   x = true
   $('div.box').text('')
+  gameWin = false
+  $('#message').text('')
 }
 
 const checkWin = function () {
@@ -27,10 +32,6 @@ const checkWin = function () {
   return result
 }
 
-// var array1 = [[1, 3, 5], [2, 4, 7], [1, 5, 9]],
-//     array2 = [1, 2, 4, 5, 9],
-//     result = array1.some(a => a.every(v => array2.includes(v)));
-
 const ticTacBoard = function (e) {
   const tgt = e.target
   const cell = parseInt(tgt.id)
@@ -38,24 +39,28 @@ const ticTacBoard = function (e) {
   if (played.includes(cell)) {
     console.log('That cell is already played.')
   } else {
-    if (x) {
-      $(tgt).text('X')
-      x = !x
-    } else {
-      $(tgt).text('O')
-      x = !x
+    if (gameWin === false) {
+      if (x) {
+        $(tgt).text('X')
+        x = !x
+      } else {
+        $(tgt).text('O')
+        x = !x
+      }
+      played.push(cell)
+      checkWin()
     }
-    played.push(cell)
-    checkWin()
   }
 
   if (played.length === 9 && !gameWin) {
     console.log('Game over, It\'s a draw.')
+    $('#message').text(`Too bad, It's a draw.`)
     setTimeout(clearBoard, 1000)
   } else if (gameWin) {
     console.log('Yeah! Thats a win!')
+    const winner = $(`div#${cell}`).text()
+    $('#message').text(`${winner} is the Winner!`)
     setTimeout(clearBoard, 1000)
-    gameWin = !gameWin
   }
   console.log('Cells played -', played)
 }
@@ -63,6 +68,7 @@ const ticTacBoard = function (e) {
 const handler = function () {
   $('#ticTac').on('click', ticTacBoard)
 }
+
 module.exports = {
   handler
 }

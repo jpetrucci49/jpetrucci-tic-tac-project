@@ -5,14 +5,12 @@ const signIn = function () {
   $('#sign-in-shell').hide()
   $('#change-password-shell').show()
   $('#sign-out-shell').show()
-  $('#ticTac').show()
 }
 const signOut = function () {
   $('#sign-up-shell').show()
   $('#sign-in-shell').show()
   $('#change-password-shell').hide()
   $('#sign-out-shell').hide()
-  $('#ticTac').hide()
 }
 const removeMessage = function () {
   $('#message').removeClass()
