@@ -33,13 +33,13 @@ const checkWin = function () {
 }
 
 const ticTacBoard = function (e) {
-  const tgt = e.target
-  const cell = parseInt(tgt.id)
-  console.log('You clicked cell -', cell)
-  if (played.includes(cell)) {
-    console.log('That cell is already played.')
-  } else {
-    if (gameWin === false) {
+  if (gameWin === false) {
+    const tgt = e.target
+    const cell = parseInt(tgt.id)
+    console.log('You clicked cell -', cell)
+    if (played.includes(cell)) {
+      console.log('That cell is already played.')
+    } else {
       if (x) {
         $(tgt).text('X')
         x = !x
@@ -50,19 +50,19 @@ const ticTacBoard = function (e) {
       played.push(cell)
       checkWin()
     }
-  }
 
-  if (played.length === 9 && !gameWin) {
-    console.log('Game over, It\'s a draw.')
-    $('#message').text(`Too bad, It's a draw.`)
-    setTimeout(clearBoard, 1000)
-  } else if (gameWin) {
-    console.log('Yeah! Thats a win!')
-    const winner = $(`div#${cell}`).text()
-    $('#message').text(`${winner} is the Winner!`)
-    setTimeout(clearBoard, 1000)
+    if (played.length === 9 && !gameWin) {
+      console.log('Game over, It\'s a draw.')
+      $('#message').text(`Too bad, It's a draw.`)
+      setTimeout(clearBoard, 1000)
+    } else if (gameWin) {
+      console.log('Yeah! Thats a win!')
+      const winner = $(`div#${played[played.length - 1]}`).text()
+      $('#message').text(`${winner} is the Winner!`)
+      setTimeout(clearBoard, 1000)
+    }
+    console.log('Cells played -', played)
   }
-  console.log('Cells played -', played)
 }
 
 const handler = function () {
