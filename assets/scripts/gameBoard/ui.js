@@ -33,7 +33,6 @@ const pieceFail = function () {
   $('#message').text('There was an error.')
 }
 const listGameSuccess = function (response) {
-  console.log(response)
   $('#ticTac').hide()
   $('#history').show()
   $('#games').html('')

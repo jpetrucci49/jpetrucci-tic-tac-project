@@ -40,9 +40,7 @@ const placePiece = function (e) {
   if (!store.game.over && store.played.length < 9) {
     const tgt = (store.played[store.played.length - 1])
     const cell = tgt
-    console.log('You clicked cell -', cell)
     if (store.played.includes(cell)) {
-      console.log('That cell is already played.')
     } else {
       $(`div#${store.played[store.played.length - 1]}`).text(currentPlayer())
       // store.played.push(cell)
@@ -50,16 +48,11 @@ const placePiece = function (e) {
     }
 
     if (store.played.length === 9 && !store.game.over) {
-      console.log('Game over, It\'s a draw.')
       $('#message').text(`Too bad, It's a draw.`)
-      setTimeout(clearBoard, 1000)
     } else if (store.game.over) {
-      console.log('Yeah! Thats a win!')
       const winner = $(`div#${store.played[store.played.length - 1]}`).text()
       $('#message').text(`${winner} is the Winner!`)
-      setTimeout(clearBoard, 1000)
     }
-    console.log('Cells played -', store.played)
   }
 }
 

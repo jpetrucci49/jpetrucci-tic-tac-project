@@ -27,7 +27,6 @@ const checkWin = function () {
       const line = []
       condition.forEach(id => {
         line.push($(`div#${id}`).text())
-        console.log(line)
       })
       const test = line.every(x => line.every(y => x === y))
       if (test) {
@@ -42,9 +41,7 @@ const ticTacBoard = function (e) {
   if (gameWin === false) {
     const tgt = e.target
     const cell = parseInt(tgt.id)
-    console.log('You clicked cell -', cell)
     if (played.includes(cell)) {
-      console.log('That cell is already played.')
     } else {
       if (x) {
         $(tgt).text('X')
@@ -59,16 +56,11 @@ const ticTacBoard = function (e) {
     }
 
     if (played.length === 9 && !gameWin) {
-      console.log('Game over, It\'s a draw.')
       $('#message').text(`Too bad, It's a draw.`)
-      setTimeout(clearBoard, 1000)
     } else if (gameWin) {
-      console.log('Yeah! Thats a win!')
       const winner = $(`div#${played[played.length - 1]}`).text()
       $('#message').text(`${winner} is the Winner!`)
-      setTimeout(clearBoard, 1000)
     }
-    console.log('Cells played -', played)
   }
 }
 const onNewGame = function () {
