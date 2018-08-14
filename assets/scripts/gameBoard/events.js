@@ -1,31 +1,37 @@
 'use strict'
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('./../store.js')
 
-let gameWin = false
-let played = []
-const winConditions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-let x = true
+const winConditions = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9'], ['1', '4', '7'], ['2', '5', '8'], ['3', '6', '9'], ['1', '5', '9'], ['3', '5', '7']]
+let player
 
 const clearBoard = function () {
-  played = []
   x = true
   $('div.box').text('')
-  gameWin = false
-  $('#message').text('')
 }
 
+const currentPlayer = function () {
+  if (store.x) {
+    player = 'X'
+  } else {
+    player = 'O'
+  }
+  store.x = !store.x
+  return player
+}
 const checkWin = function () {
   const result = winConditions.some(function (condition) {
     //  If line is filled
-    if (condition.every(id => played.includes(id))) {
+    if (condition.every(id => store.played.includes(id))) {
       const line = []
       condition.forEach(id => {
         line.push($(`div#${id}`).text())
+        console.log(line)
       })
       const test = line.every(x => line.every(y => x === y))
       if (test) {
-        gameWin = !gameWin
+        store.game.over = true
       }
     }
   })
@@ -48,6 +54,7 @@ const ticTacBoard = function (e) {
         x = !x
       }
       played.push(cell)
+      store.played.push(cell)
       checkWin()
     }
 
@@ -64,9 +71,48 @@ const ticTacBoard = function (e) {
     console.log('Cells played -', played)
   }
 }
-
+const onNewGame = function () {
+  api.newGame()
+    .then(ui.newGameSuccess)
+    .catch(ui.newGameFail)
+}
+const onPlacePiece = function (e) {
+  if (store.game.over === false && store.played.length < 9) {
+    if (store.played.includes(e.target.id)) {
+      $('#message').text('This cell has already been played!')
+    } else {
+      store.clicked = e.target
+      // store.clicked.id for cell #
+      store.player = currentPlayer()
+      const cell = e.target.id
+      store.played.push(cell)
+      const index = (cell - 1)
+      const value = store.player
+      const data = {
+        'game': {
+          'cell': {
+            'index': `${index}`,
+            'value': `${value}`
+          },
+          'over': `${store.game.over}`
+        }
+      }
+      api.placePiece(data)
+        .then(ui.piecePlaced)
+        .catch(ui.pieceFail)
+    }
+  }
+}
+const onListGame = function (e) {
+  e.preventDefault()
+  api.listGame()
+    .then(ui.listGameSuccess)
+    .catch(ui.listGameFail)
+}
 const handler = function () {
-  $('#ticTac').on('click', ticTacBoard)
+  $('#ticTac > div').on('click', onPlacePiece)
+  $('#new-game-shell').on('click', onNewGame)
+  $('#game-list-shell').on('click', onListGame)
 }
 
 module.exports = {

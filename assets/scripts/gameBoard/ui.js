@@ -1,95 +1,60 @@
 'use strict'
 const store = require('./../store.js')
-const signIn = function () {
-  $('#sign-up-shell').hide()
-  $('#sign-in-shell').hide()
-  $('#change-password-shell').show()
-  $('#sign-out-shell').show()
-}
-const signOut = function () {
-  $('#sign-up-shell').show()
-  $('#sign-in-shell').show()
-  $('#change-password-shell').hide()
-  $('#sign-out-shell').hide()
-}
-const removeMessage = function () {
-  $('#message').removeClass()
-  $('#message').text('')
-}
-const clearData = function () {
-  $('#sign-up input').val('')
-  $('#sign-in input').val('')
-  $('#change-password input').val('')
-}
-const signUpSuccess = function () {
-  $('#message').text('Account created!')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  clearData()
-  setTimeout(removeMessage, 10000)
-}
-const signUpFailure = function () {
-  $('#message').text('Creation Failed!')
-  $('#message').removeClass()
-  $('#message').addClass('fail')
-  clearData()
-  setTimeout(removeMessage, 10000)
-}
+const game = require('./game.js')
 
-const signInSuccess = function (response) {
-  $('#message').text('Welcome Back!')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  clearData()
-  signIn()
-  setTimeout(removeMessage, 10000)
-  store.user = response.user
+const newGameSuccess = function (data) {
+  store.game = data.game
+  store.played = []
+  $('#ticTac').show()
+  game.clearBoard()
+  $('#ticTac').show()
+  $('#history').hide()
 }
-const signInFailure = function () {
-  $('#message').text('Creation Failed!')
-  $('#message').removeClass()
-  $('#message').addClass('fail')
-  clearData()
-  setTimeout(removeMessage, 10000)
+const newGameFail = function () {
+  console.log('It borked')
 }
-
-const changePasswordSuccess = function () {
-  $('#message').text('Password has been changed!')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  clearData()
-  setTimeout(removeMessage, 10000)
+const piecePlaced = function (response) {
+  store.game = response.game
+  $(store.clicked).text(store.player)
+  if (store.player === 'X') {
+    $('#message').text('It\'s O\'s Turn!')
+  } else {
+    $('#message').text('It\'s X\'s Turn!')
+  }
+  game.checkWin()
+  if (store.played.length === 9 && !store.game.over) {
+    $('#message').text(`Too bad, It's a draw.`)
+  } else if (store.game.over) {
+    const winner = $(`div#${store.played[store.played.length - 1]}`).text()
+    $('#message').text(`${winner} is the Winner!`)
+  }
 }
-const changePasswordFailure = function () {
-  $('#message').text('Request Failed!')
-  $('#message').removeClass()
-  $('#message').addClass('fail')
-  clearData()
-  setTimeout(removeMessage, 10000)
+const pieceFail = function () {
+  $('#message').text('There was an error.')
 }
-
-const signOutSuccess = function () {
-  $('#message').text('You have successfully signed out!')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  clearData()
-  signOut()
-  setTimeout(removeMessage, 10000)
+const listGameSuccess = function (response) {
+  console.log(response)
+  $('#ticTac').hide()
+  $('#history').show()
+  $('#games').html('')
+  response.games.slice(-30).forEach((game) => {
+    const historyHTML = `
+      <p>ID: ${game.id} - Cells: ${game.cells}</p>
+    `
+    $('#games').append(historyHTML)
+  })
+  if (response.games.length < 1) {
+    $('#message').text('You haven\'t played any games!')
+  }
 }
-const signOutFailure = function () {
-  $('#message').text('Failed to sign out')
-  $('#message').removeClass()
-  $('#message').addClass('fail')
-  clearData()
-  setTimeout(removeMessage, 10000)
+const listGameFail = function () {
+  $('#message').text('There was an error')
 }
 module.exports = {
-  signUpSuccess,
-  signUpFailure,
-  signInSuccess,
-  signInFailure,
-  changePasswordSuccess,
-  changePasswordFailure,
-  signOutSuccess,
-  signOutFailure
+  newGameSuccess,
+  newGameFail,
+  piecePlaced,
+  pieceFail,
+  listGameSuccess,
+  listGameFail
 }

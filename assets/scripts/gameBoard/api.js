@@ -1,23 +1,19 @@
 'use strict'
 const config = require('./../config.js')
 const store = require('./../store.js')
-const signUp = function (data) {
+
+const newGame = function () {
   return $.ajax({
-    url: config.apiUrl + '/sign-up',
+    url: config.apiUrl + '/games',
     method: 'POST',
-    data
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
   })
 }
-const signIn = function (data) {
+const placePiece = function (data) {
   return $.ajax({
-    url: config.apiUrl + '/sign-in',
-    method: 'POST',
-    data
-  })
-}
-const changePassword = function (data) {
-  return $.ajax({
-    url: config.apiUrl + '/change-password',
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       'Authorization': 'Token token=' + store.user.token
@@ -25,18 +21,17 @@ const changePassword = function (data) {
     data
   })
 }
-const signOut = function (data) {
+const listGame = () => {
   return $.ajax({
-    url: config.apiUrl + '/sign-out',
-    method: 'DELETE',
+    url: config.apiUrl + '/games',
+    method: 'GET',
     headers: {
       'Authorization': 'Token token=' + store.user.token
     }
   })
 }
 module.exports = {
-  signUp,
-  signIn,
-  changePassword,
-  signOut
+  newGame,
+  placePiece,
+  listGame
 }

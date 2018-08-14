@@ -12,7 +12,10 @@ $blue: rgb(0, 0, 255);
 
 #change-password-shell,
 #sign-out-shell,
-#ticTac {
+#ticTac,
+#new-game-shell,
+#game-list-shell,
+#history {
   display: none;
 }
 
@@ -20,10 +23,13 @@ $blue: rgb(0, 0, 255);
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  max-width: 600px;
+  max-width: 400px;
   padding: 15px;
 }
-
+#game-button-shell {
+  flex-direction: row;
+  margin: 15px;
+}
 .row {
   display: flex;
   font-size: 100px;
@@ -65,4 +71,12 @@ $blue: rgb(0, 0, 255);
   &:hover {
     background-color: $red;
   }
+}
+
+#history > #games {
+  display: flex;
+  font-size: 12px;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
 }

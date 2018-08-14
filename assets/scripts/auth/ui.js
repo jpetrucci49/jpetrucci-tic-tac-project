@@ -5,7 +5,8 @@ const signIn = function () {
   $('#sign-in-shell').hide()
   $('#change-password-shell').show()
   $('#sign-out-shell').show()
-  $('#ticTac').show()
+  $('#new-game-shell').show()
+  $('#game-list-shell').show()
 }
 const signOut = function () {
   $('#sign-up-shell').show()
@@ -13,6 +14,9 @@ const signOut = function () {
   $('#change-password-shell').hide()
   $('#sign-out-shell').hide()
   $('#ticTac').hide()
+  $('#new-game-shell').hide()
+  $('#game-list-shell').hide()
+  $('#history').hide()
 }
 const removeMessage = function () {
   $('#message').removeClass()
@@ -26,33 +30,33 @@ const clearData = function () {
 const signUpSuccess = function () {
   $('#message').text('Account created!')
   $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message').addClass('g')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 const signUpFailure = function () {
   $('#message').text('Creation Failed!')
   $('#message').removeClass()
-  $('#message').addClass('fail')
+  $('#message').addClass('r')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 
 const signInSuccess = function (response) {
   $('#message').text('Welcome Back!')
   $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message').addClass('g')
   clearData()
   signIn()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
   store.user = response.user
 }
 const signInFailure = function () {
-  $('#message').text('Creation Failed!')
+  $('#message').text('Sign In Failed!')
   $('#message').removeClass()
   $('#message').addClass('fail')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 
 const changePasswordSuccess = function () {
@@ -60,14 +64,14 @@ const changePasswordSuccess = function () {
   $('#message').removeClass()
   $('#message').addClass('success')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 const changePasswordFailure = function () {
   $('#message').text('Request Failed!')
   $('#message').removeClass()
   $('#message').addClass('fail')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 
 const signOutSuccess = function () {
@@ -76,14 +80,14 @@ const signOutSuccess = function () {
   $('#message').addClass('success')
   clearData()
   signOut()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 const signOutFailure = function () {
   $('#message').text('Failed to sign out')
   $('#message').removeClass()
   $('#message').addClass('fail')
   clearData()
-  setTimeout(removeMessage, 10000)
+  setTimeout(removeMessage, 2000)
 }
 module.exports = {
   signUpSuccess,
