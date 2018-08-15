@@ -57,7 +57,7 @@ const onListGame = function (e) {
 }
 
 const handler = function () {
-  $('#ticTac > div').on('click', onPlacePiece)
+  $('div.box').on('click', onPlacePiece)
   $('#new-game-shell').on('click', onNewGame)
   $('#game-list-shell').on('click', onListGame)
 }

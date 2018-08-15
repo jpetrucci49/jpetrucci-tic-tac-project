@@ -24,11 +24,10 @@ const checkWin = function () {
     //  If line is filled
     if (condition.every(id => store.played.includes(id))) {
       const line = []
-      condition.forEach(id => {
-        line.push($(`div#${id}`).text())
-      })
-      const test = line.every(x => line.every(y => x === y))
-      if (test) {
+      condition.forEach(id => line.push($(`div#${id}`).text()))
+      // line.reduce((curr, next) => curr === next ? next : false)
+      // does the same as -~-~-~-
+      if (line.every(x => line.every(y => x === y))) {
         store.game.over = true
       }
     }
