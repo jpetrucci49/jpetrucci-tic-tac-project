@@ -4,8 +4,6 @@ const game = require('./game.js')
 
 const newGameSuccess = function (data) {
   store.game = data.game
-  store.played = []
-  $('#ticTac').show()
   game.clearBoard()
   $('#ticTac').show()
   $('#history').hide()

@@ -8,6 +8,7 @@ const clearBoard = function () {
   $('div.box').text('')
   store.game.over = false
   store.x = true
+  $('#message').removeClass()
   $('#message').text('It\'s X\'s Turn.')
 }
 
