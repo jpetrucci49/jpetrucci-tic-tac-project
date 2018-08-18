@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <div class="wrapper">
+        <div class="account-options">
+          <div id="sign-up-shell">
+            <form id="sign-up" class="border">
+              <fieldset>
+                <legend>Sign Up</legend>
+                <input type="email" name="credentials[email]" placeholder="Email:">
+                <input type="password" name="credentials[password]" placeholder="Password:">
+                <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password:">
+                <button type="submit">Sign Up</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="sign-in-shell">
+            <form id="sign-in" class="border">
+              <fieldset>
+                <legend>Sign In</legend>
+                <input type="email" name="credentials[email]" placeholder="Email:">
+                <input type="password" name="credentials[password]" placeholder="Password:">
+                <button type="submit">Sign In</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="change-password-shell">
+            <form id="change-password" class="border">
+              <fieldset>
+                <legend>Change Password</legend>
+                <input type="password" name="passwords[old]" placeholder="Old Password:">
+                <input type="password" name="passwords[new]" placeholder="New Password:">
+                <button type="submit">Change Password</button>
+              </fieldset>
+            </form>
+          </div>
+          <div id="sign-out-shell">
+            <form id="sign-out" class="border">
+              <fieldset>
+                <legend>Sign out</legend>
+                <button type="submit">Sign out</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <h1 id="message">Sign in, or create an account.</h1>
+        <div id="ticTac" class="wrapper">
+          <div id="top" class="row">
+            <div id="1" class="box r"></div>
+            <div id="2" class="box r"></div>
+            <div id="3" class="box r"></div>
+          </div>
+          <div id="middle" class="row">
+            <div id="4" class="box g"></div>
+            <div id="5" class="box g"></div>
+            <div id="6" class="box g"></div>
+          </div>
+          <div id="btm" class="row">
+            <div id="7" class="box b"></div>
+            <div id="8" class="box b"></div>
+            <div id="9" class="box b"></div>
+          </div>
+        </div>
+        <div id="game-button-shell" class="wrapper">
+          <div id="new-game-shell">
+            <button type="submit">New Game</button>
+          </div>
+          <div id="game-list-shell">
+            <button type="submit">List All Games</button>
+          </div>
+        </div>
+        <div id="history">
+          <div id="games" class="row">
+
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
