@@ -16,7 +16,7 @@ The game returns feedback on game conclusion, regardless of win, lose or draw.
 The game tracks and displays my game history.
 
 Wireframes:
-(./assets/images/0814180839.jpg)
-(./assets/images/0814180840.jpg)
-(./assets/images/0814180840a.jpg)
-(./assets/images/0814180840b.jpg)
+![alt text](./assets/images/0814180839.jpg)
+![alt text](./assets/images/0814180840.jpg)
+![alt text](./assets/images/0814180840a.jpg)
+![alt text](./assets/images/0814180840b.jpg)
